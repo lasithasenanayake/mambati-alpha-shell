@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" type="text/css" href="bower_components/animate.css/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="bower_components/swiper/dist/css/swiper.css"/>
+    <link rel="stylesheet" href="bower_components/angular-gridster/dist/angular-gridster.min.css"/>
+    <link rel="stylesheet" type="text/css" href="shell_specific_components/styles/animations.css"/>
+    <link rel="stylesheet" type="text/css" href="shell_specific_components/styles/appshellcommon.css"/>
+    <link rel="stylesheet" type="text/css" href="shell_specific_components/styles/refractoredStyles.css"/>
+    <link rel="stylesheet" type="text/css" href="shell_specific_components/styles/custommaterialstyling.css"/>
+    <link rel="stylesheet" type="text/css" href="shell_specific_components/styles/themestyles.css"/>
+    <link rel="stylesheet" type="text/css" href="shell_specific_components/styles/st-blurred-dialog.css"/>
+    <link rel="stylesheet" type="text/css" href="shell_specific_components/styles/v-accordion.css"/>
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+</head>
+<body ng-app="mambatiFrameworkShell" layout="column" ng-cloak> 
+    <!-- framework outer container .start -->
+    <!-- <div class="testBackground" backgroundblur-component="{imageURL : 'images/shellassets/background/thecontinuum.jpg',blurAmount : 15,imageClass : 'bg-blur'}"></div> -->
+    <!-- <div class="dw-loadingFrame">
+        <div class="dw-cygilContainer" style="background:url(images/tennantassets/duoworldbannerCustom.png);"></div>
+        <div class="dw-platformLoadingContainer">
+            Loading the platform, please wait !
+        </div>
+        <wave-component></wave-component>
+    </div>  -->
+    <div ngsf-fullscreen id="duoWorld-framework-main-container" ng-controller="duoworld-framework-shell-ctrl" md-theme="{{shellConfig.themeconfiguration.palettename}}" md-theme-watch="true" backgroundblur-component="{imageURL : 'images/shellassets/background/water_by_kuldarleement-d6g5poo.jpg',blurAmount : 5,imageClass : 'bg-blur'}">
+        <!-- framework inner container .start -->
+        <div id="duoworld-framework-container">
+            <!-- left side nav .start -->
+            <md-sidenav class="md-sidenav-left md-primary" layout="column" layout-align="start start" md-component-id="left">
+                <div class="md-profile-widget">
+                    <div class="md-profile-widget-banner" style="background-image:linear-gradient(rgba(20,20,20,0.3), rgba(20,20,20,0.8)), url({{userProfileDetails.userProfileResources.coverImgUrl}});" layout="column" layout-align="end end">
+                        <!-- <div class="userProfileControls" style="width:100%; height:48px;" layout="row" layout-align="space-around center">
+                            <md-button class="md-icon-button" aria-label="Market Place" ng-click="dwFrameworkBuiltinAppNavigation('market place')">
+                                <md-icon md-svg-icon="icons/ic_shopping_cart_24px.svg" class="s24" alt="Market Place"></md-icon>
+                                <md-tooltip style="margin-left:5px !important;">Market Place</md-tooltip>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Tennant Explorer" ng-click="dwFrameworkBuiltinAppNavigation('tennant explorer');">
+                                <md-icon md-svg-icon="icons/ic_explore_24px.svg" class="s24" alt="Tennant Explorer"></md-icon>
+                                <md-tooltip>Tennant Explorer</md-tooltip>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Settings" ng-click="dwFrameworkBuiltinAppNavigation('settings');">
+                                <md-icon md-svg-icon="icons/ic_settings_24px.svg" class="s24" alt="Settings"></md-icon>
+                                <md-tooltip>Settings</md-tooltip>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Quit" ng-click="quitApplication()">
+                                <md-icon md-svg-icon="icons/ic_exit_to_app_24px.svg" class="s24" alt="Quit"></md-icon>
+                                <md-tooltip>Quit</md-tooltip>
+                            </md-button>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="dw-quickaccess-appdrawer">
+                    <v-accordion class="vAccordion--default">
+                      <v-pane>
+                        <v-pane-header layout="column" layout-align="start start">
+                            <md-icon md-svg-icon="icons/ic_favorite_24px.svg" style="color:#F44336;"class="accoridanIcon" alt="Favorite Apps"></md-icon><span>Favorite Applications</span>
+                        </v-pane-header>
+
+                        <v-pane-content>
+                            <span>Sorry you cant access favorite apps yet !</span>
+                            <!-- <div md-ink-ripple="#333" ng-click="favoriteAppLauncher();" style="position:relative" class="favoriteAppItemContainer" layout="row" layout-align="start start">
+                                <div class="favoriteAppItemContainerIcon" layout="column" layout-align="center center">
+                                      <img ng-src="images/nikkang.png" err-src="images/appIcons/untitledapplication.png" width="32" height="32">
+                                </div>
+                                <div class="favoriteAppItemContainerDetails" layout="column" layout-align="center start">
+                                    <span>Sample Application</span>
+                                    <span><md-icon md-svg-icon="icons/ic_favorite_24px.svg" class="favoriteAppIconIndicator" alt="Favorited"></md-icon>Favorited</span>
+                                </div>
+                            </div> -->
+                        </v-pane-content>
+                      </v-pane>
+
+                      <v-pane>
+                        <v-pane-header> 
+                            <md-icon md-svg-icon="icons/ic_flash_on_24px.svg" style="color:#FFC107;" class="accoridanIcon" alt="Active Apps"></md-icon><span>Active Applications</span>
+                        </v-pane-header>
+
+                        <v-pane-content>
+                            <span>There are no active apps !</span>
+                            <!-- <div md-ink-ripple="#333" ng-click="activeAppLauncher();" style="position:relative" class="activeAppItemContainer" layout="row" layout-align="start start">
+                                <div class="activeAppItemContainerIcon" layout="column" layout-align="center center">
+                                      <img ng-src="images/nikkang.png" err-src="images/appIcons/untitledapplication.png" width="32" height="32">
+                                </div>
+                                <div class="activeAppItemContainerDetails" layout="column" layout-align="center start">
+                                    <span>Sample Application</span>
+                                    <span><md-icon md-svg-icon="icons/ic_flash_on_24px.svg" class="activeAppIconIndicator" alt="Active"></md-icon>Active</span>
+                                </div>
+                            </div> -->
+                        </v-pane-content>
+                      </v-pane>
+
+                      <v-pane>
+                        <v-pane-header>
+                            <md-icon md-svg-icon="icons/ic_apps_24px.svg" style="color:#009688;" class="accoridanIcon" alt="All Apps"></md-icon><span>All Applications</span>
+                        </v-pane-header>
+
+                        <v-pane-content>
+                            <div ng-repeat="app in allApps" md-ink-ripple="#333" ng-click="quickLaunchAppAccess(app);" style="position:relative" class="allAppItemContainer" layout="row" layout-align="start start">
+                                <div class="allAppItemContainerIcon" layout="column" layout-align="center center">
+                                      <img ng-src="{{app.iconUrl}}" err-src="images/appIcons/untitledapplication.png" width="32" height="32">
+                                </div>
+                                <div class="allAppItemContainerDetails" layout="column" layout-align="center start">
+                                    <span>{{app.Name}}</span>
+                                </div>
+                            </div>
+                        </v-pane-content>
+                      </v-pane>
+
+                    </v-accordion>
+                </div>
+            </md-sidenav>
+            <!-- left side nav .end -->
+            <!-- right side nav .start -->
+            <!-- <md-sidenav class="md-sidenav-right md-primary" layout="column" layout-align="start start" md-component-id="right">
+                <div class="dw-sidenav-right-header" layout="row" layout-align="center center">
+                    <span>Switch Tennant</span>
+                </div>
+                <div class="dw-quickaccess-tennantswitcher" layout="column" layout-align="start start" ng-scrollbars ng-scrollbars-config="frameworkScrollconfig.sidePanel">
+                    <md-button class="md-primary" ng-repeat="tennants in recivedTennantCollection" ng-click="dwSwitchTennant($event, tennants.TenantID)"><span style="font-size:14px;">{{tennants.TenantID}}</span></md-button>
+                </div>
+            </md-sidenav> -->
+            <!-- right side nav .end -->
+            <!-- top tool bar .start -->
+            <md-toolbar class="md-toolbar-medium" style="z-index:4 !important;">
+                <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                    <div class="tool-bar-control-set left" layout="row" layout-align="start center">
+                        <shell-branding id="shellBranding" ng-src="images/tennantassets/customizedlogo_white.png" ng-click="toggleLeftMenu()"></shell-branding>
+                    </div>
+                    <!-- <div class="tool-bar-control-set middle" layout="row" layout-align="start center">
+                        <div class="dw-global-serach-container" layout="row" layout-align="end center">
+                            <div class="dw-global-search-section1" layout="row" layout-align="start center">
+                                <div class="dw-global-search-icon">
+                                    <md-icon md-svg-icon="icons/ic_search_24px.svg" class="s24" alt="Search"></md-icon>
+                                </div>
+                                <div class="dw-global-search-input-box">
+                                    <input type="text" placeholder="Search">
+                                </div>
+                            </div>
+                            <div class="dw-global-search-section2" layout="column" layout-align="center end">
+                                <div class="dw-global-search-tag">{{globalSearch.context}}<md-tooltip>Local Context</md-tooltip></div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="tool-bar-control-set right" layout="row" layout-align="end center">
+                        <tenantswitcher-component currenttennant="currenttenantsessioninfo.Username"></tenantswitcher-component>
+                        <md-button class="md-icon-button" aria-label="Dock Configuration">
+                            <md-icon md-svg-icon="icons/ic_view_carousel_24px.svg" class="s24" alt="Dock Configuration"></md-icon>
+                            <md-tooltip>Dock Configuration</md-tooltip>
+                        </md-button>
+                        <md-button ngsf-toggle-fullscreen class="md-icon-button" aria-label="Full Screen">
+                            <md-icon md-svg-icon="icons/ic_settings_overscan_24px.svg" class="s24" alt="Full Screen"></md-icon>
+                            <md-tooltip>Full Screen</md-tooltip>
+                        </md-button>
+                        <md-button class="md-icon-button" aria-label="Lock Application">
+                            <md-icon md-svg-icon="icons/ic_lock_24px.svg" class="s24" alt="Lock Application"></md-icon>
+                            <md-tooltip style="margin-left:-10px !important;">Lock Application</md-tooltip>
+                        </md-button>
+                        <!-- <md-button class="md-icon-button" aria-label="Notification">
+                            <md-icon md-svg-icon="icons/ic_notifications_none_24px.svg" class="s24" alt="Notification"></md-icon>
+                            <md-tooltip>Notifications</md-tooltip>
+                        </md-button> -->
+                        <!-- <md-button class="md-icon-button" aria-label="Communications">
+                            <md-icon md-svg-icon="icons/ic_settings_remote_24px.svg" class="s24" alt="Communications"></md-icon>
+                            <md-tooltip>Communications</md-tooltip>
+                        </md-button> -->
+                        <md-menu>
+                          <md-button aria-label="Open profile interaction menu" class="md-accent md-icon-button" ng-click="$mdOpenMenu()">
+                            <img ng-src="data:image/png;base64,{{profilePicture}}" err-src="images/appIcons/contacts.png" width="32" height="32" style="border-radius:50%;">
+                          </md-button>
+                          <md-menu-content width="4" class="md-primary" style="padding:0px !important;">
+                            <div class="userInfoSummary" style="width:100%; height:186px;" layout="column" layout-align="start start">
+                                <div class="userInfoProfileBannerSection" style="width:100%; height:186px; background:url(images/userassets/contactcoverimg/usercoverpics1.jpg) no-repeat; background-size: 100% 100%;" layout="column" layout-align="start center">
+                                    <img ng-src="data:image/png;base64,{{profilePicture}}" err-src="images/appIcons/contacts.png" width="90" height="90" style="margin-top:10px; border-radius:50%; box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);">
+                                    <span style="font-size:20px; color:#fff; margin-top:5px; text-shadow:1px 1px 2px rgba(30,30,30,0.8)">{{shellUserProfileSection.Name}}</span>
+                                    <span style="font-size:16px; color:#fff; margin-top:0px; text-shadow:1px 1px 2px rgba(30,30,30,0.8);">{{shellUserProfileSection.Email}}</span>
+                                </div>
+                            </div>
+                            <div class="profileWidgetControls" layout="row" layout-align="space-around center">
+                                <md-button class="md-primary" ng-click="dwFrameworkBuiltinAppNavigation('user profile');"><md-icon md-svg-icon="icons/ic_account_box_24px.svg" alt="User Profile"></md-icon></md-button>
+                                <md-button class="md-primary" ng-click="dwFrameworkBuiltinAppNavigation('settings');"><md-icon md-svg-icon="icons/ic_settings_applications_24px.svg" alt="Settings"></md-icon></md-button>
+                                <md-button class="md-primary" ng-click="quitApplication($event);"><md-icon md-svg-icon="icons/ic_exit_to_app_24px.svg" alt="Quit Application"></md-icon></md-button>
+                            </div>
+                          </md-menu-content>
+                        </md-menu>
+                    </div>
+                </div>
+            </md-toolbar>
+            <!-- top tool bar .end -->
+            <!-- middle UI View .start -->
+            <div id="duoworld-framework-view-container" ui-view></div>
+            <!-- middle UI View .end -->
+        </div>
+        <!-- framework inner container .end -->
+    </div>
+    <!-- framework outer container .end -->
+
+    <!-- Framework Core Library Dependencies -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <!-- Framework Helper Modules -->
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/ui-router-extras/release/ct-ui-router-extras.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <!-- UI Framework and Helper Modules -->
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.min.js"></script>
+    <script src="bower_components/swiper/dist/js/swiper.jquery.min.js"></script>
+    <script src="bower_components/javascript-detect-element-resize/jquery.resize.js"></script>
+    <script src="bower_components/angular-gridster/dist/angular-gridster.min.js"></script>
+    <script src="bower_components/screenfull/dist/screenfull.js"></script>
+    <script src="bower_components/angular-screenfull/dist/angular-screenfull.min.js"></script>
+    <script src="bower_components/Chart.js/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="shell_specific_components/libs/angular-swiper.js"></script>
+    <script src="shell_specific_components/libs/angular-filter.js"></script>
+    <script src="shell_specific_components/libs/ngDialog.min.js"></script>
+    <script src="shell_specific_components/libs/lava.min.js"></script>
+    <script src="shell_specific_components/libs/st-blurred-dialog.js"></script>
+    <script src="shell_specific_components/libs/v-accordion.js"></script>
+    <script src="shell_specific_components/libs/bg-blur.min.js"></script>
+    <!-- UI Micro Kernal Modules -->
+    <script src="/uimicrokernel/socket.io-1.2.0.js"></script>
+    <script src="/uimicrokernel/uimicrokernel.js"></script>
+    <script src="/uimicrokernel/directivelibrary.js"></script>
+    <!-- Shell Specific Global Modules -->
+    <script src="shell_specific_components/libs/mambatidirectives.js"></script>
+    <script src="shell_specific_components/libs/widget.js"></script>
+    <script src="shell_specific_components/libs/mambatirenderingengine.js"></script>
+    <script src="shell_specific_components/filters/dw-shell-common-filters.js"></script>
+    <!-- Shell Specific Local Modules -->
+    <script src="shell_specific_components/applicationbootstrap/duoworld-frameworkshell.js"></script>
+    <script src="shell_specific_components/applicationbootstrap/duoworld-themeconfiguration.js"></script>
+    <!-- Shell Specific Factories -->
+    <script src="shell_specific_components/factories/duoworld-tennantinfo-factory.js"></script>
+    <!-- Shell Specific Controllers -->
+    <script src="shell_specific_components/controllers/duoworld-frameworkentrycontroller.js"></script>
+    <script src="shell_specific_components/controllers/duoworld-framework-shell-controller.js"></script>
+    <script src="shell_specific_components/controllers/duoworld-framework-shell-dock-controller.js"></script>
+    <!-- child view controllers -->
+    <script src="shell_specific_components/controllers/duoworld-framework-shell-launcher-controller.js"></script>
+    <script src="shell_specific_components/controllers/duoworld-framework-shell-launcher-customapps-controller.js"></script>
+    <script src="shell_specific_components/controllers/duoworld-framework-shell-launcher-defaultapps-controller.js"></script>
+    <!-- default app controllers-->
+    <script src="shell_specific_components/controllers/duoworld-framework-shell-childapp-marketplace-controller.js"></script>
+    <script src="scripts/defaultappcontrollers/duoworld-framework-shell-childapp-userprofile-controller.js"></script>
+    <script src="scripts/defaultappcontrollers/duoworld-framework-shell-childapp-settings-controller.js"></script>
+    <!--<script src="scripts/defaultappcontrollers/duoworld-framework-shell-childapp-tennantexplorer-controller.js"></script>-->
+    <script src="scripts/defaultappcontrollers/duoworld-framework-shell-childapp-connect-controller.js"></script>
+</body>
+</html>

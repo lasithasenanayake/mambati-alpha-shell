@@ -1,0 +1,600 @@
+<style>
+    .md-child-application-container {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ececec;
+    }
+    
+    .md-child-application-header-control-bar {
+        position: relative;
+        z-index: 1;
+        top: 0px;
+        left: 0;
+        width: 100%;
+        height: 48px;
+        padding: 0px 8px 0px 8px;
+        box-sizing: border-box;
+    }
+    
+    .md-framework-pannel-featureHolder-menu-view {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        padding-left: 8px;
+        padding-right: 8px;
+        opacity: 1;
+    }
+    
+    .md-framework-pannel-featureHolder-search-view {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        padding-left: 8px;
+        padding-right: 8px;
+        background: rgba(10, 10, 10, 0.05);
+    }
+    
+    .cad24 {
+        color: #999999;
+    }
+    
+    .customeAppContainer {
+        position: relative;
+        width: 100%;
+        height: calc(100% - 48px);
+        overflow: hidden;
+        z-index: -2;
+        opacity: 0;
+        top: 48px;
+        padding-bottom: 30px;
+        background: rgba(0, 0, 0, 0);
+        transition: all 1s cubic-bezier(.55, 0, .1, 1);
+        -o-transition: all 1s cubic-bezier(.55, 0, .1, 1);
+        -moz-transition: all 1s cubic-bezier(.55, 0, .1, 1);
+        -webkit-transition: all 1s cubic-bezier(.55, 0, .1, 1);
+        box-sizing: border-box;
+    }
+    
+    .md-child-application-header-control-bar-left-section img {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+    }
+    
+    .md-child-application-header-control-bar-left-section span {
+        font-size: 18px;
+        color: #999999;
+    }
+    
+    #idRenderDiv {
+        height: calc(100% - 10px) !important;
+        width: 100%;
+        overflow-y: scroll;
+        box-styling: border-box;
+    }
+    /*---------------------------Dilshan Custom Styling-------------------------------*/
+    
+    .md-button {
+        margin: 0px !important;
+        min-width: 0 !important;
+    }
+    
+    md-select {
+        padding-bottom: 26px;
+    }
+    
+    md-header {
+        z-index: 3;
+        position: fixed;
+        left: 0;
+        right: 0;
+    }
+    
+    .md-sticky-no-effect.md-subheader.md-default-theme {
+        background: #dcedc8;
+        margin-top: -24px;
+        width: 125% !important;
+        margin-left: -24px;
+    }
+    
+    .md-sticky-clone[sticky-state="active"] {
+        margin-top: 0px !important;
+    }
+    
+    ul {
+        list-style: none;
+    }
+    
+    hr {
+        border: 1px solid #B6B6B6;
+    }
+    
+    md-input-container.md-default-theme .md-input {
+        border-bottom: 1px solid #B6B6B6;
+    }
+    
+    md-select.md-default-theme .md-select-label.md-placeholder {
+        border-bottom: 1px solid #B6B6B6;
+    }
+    
+    md-input-container.md-default-theme label {
+        color: rgba(0, 0, 0, 0.54);
+    }
+    
+    .labelCus {
+        color: rgba(0, 0, 0, 0.54);
+    }
+    
+    .md-whiteframe-z1 {
+        background: #fff;
+        animation: fromBottom 1.3s 1;
+        -webkit-animation: fromBottom 1.3s 1;
+    }
+    
+    .dialButtons {
+        height: 45px;
+        width: 70px;
+        margin: 0px !important;
+        min-width: 0 !important;
+    }
+    
+    @media screen and (max-width: 960px) {
+        .md-toolbar-tools {
+            width: 100%;
+        }
+        .md-whiteframe-z1 {
+            width: 100%;
+        }
+    }
+    
+    @media screen and (max-width: 599px) {
+        .blankspace {
+            display: none;
+        }
+    }
+    
+    @media screen and(min-width:768px) {
+        .fabBtn {
+            margin: 35px 83%;
+        }
+    }
+    /*table*/
+    
+    a {
+        text-decoration: none;
+    }
+    
+    i {
+        vertical-align: middle;
+        font-size: 24px;
+    }
+    
+    .md-breadcrumb {
+        padding-left: 88px;
+    }
+    
+    .JCLRgrip:first-child {
+        left: 105px!important;
+        display: none!important;
+    }
+    
+    .JColResizer th:first-child {
+        width: 105px!important;
+    }
+    
+    .md-table {
+        min-width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .md-table tbody tr:hover,
+    .md-table tbody tr:focus {
+        cursor: pointer;
+        background-color: rgba(63, 81, 181, 0.2);
+    }
+    
+    .md-table-header {
+        border-bottom: 1px solid rgb(230, 230, 230);
+        color: rgb(130, 130, 130);
+        text-align: left;
+        font-size: 0.75em;
+        font-weight: 700;
+        padding: 16px 16px 16px 0;
+    }
+    
+    .md-table-header a {
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    .md-table-content {
+        white-space: nowrap;
+        font-size: 0.8em;
+        padding: 16px 16px 16px 0;
+        height: 72px;
+    }
+    
+    .md-table-td-more {
+        max-width: 72px;
+        width: 72px;
+        padding: 16px;
+    }
+    
+    .md-table-thumbs {
+        max-width: 104px;
+        width: 104px;
+        padding: 16px 32px;
+    }
+    
+    .md-table-thumbs div {
+        overflow: hidden;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        background-size: cover;
+        box-shadow: 0 8px 10px rgba(0, 0, 0, .3);
+        -webkit-box-shadow: 0 8px 10px rgba(0, 0, 0, .1);
+    }
+    
+    .md-table-footer {
+        height: 40px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+    
+    .md-table-count-info {
+        line-height: 40px;
+        font-size: .75em;
+    }
+    
+    .md-table-footer-item {
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+    }
+    
+    .md-table-active-page {
+        font-weight: 700;
+    }
+    
+    .bold {
+        font-weight: 700;
+    }
+    
+    .grey {
+        color: grey;
+    }
+    
+    .ps-container >.ps-scrollbar-y-rail >.ps-scrollbar-y {
+        width: 3px !important;
+    }
+    
+    .ps-container >.ps-scrollbar-y-rail {
+        width: 3px !important;
+    }
+    
+    .md-card-right {
+        position: relative;
+        margin-right: 12px;
+    }
+    
+    .md-card-right:before {
+        content: "";
+        position: absolute;
+        right: 100%;
+        top: 20px;
+        border-top: 5px solid transparent;
+        border-left: 10px solid white;
+        border-bottom: 5px solid transparent;
+        left: 100%;
+    }
+    
+    .md-card-left {
+        position: relative;
+        margin-left: 12px;
+    }
+    
+    .md-card-left:before {
+        content: "";
+        position: absolute;
+        right: 100%;
+        top: 20px;
+        border-top: 5px solid transparent;
+        border-left: 10px solid white;
+        border-bottom: 5px solid transparent;
+        right: 100%;
+        transform: rotate(180deg);
+    }
+    
+    md-card md-card-content {
+        padding: 10px;
+    }
+    
+    @keyframes fromBottom {
+        0% {
+            transform: translateY(250px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fromTop {
+        0% {
+            transform: translateY(-250px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    
+    @-webkit-keyframes fromBottom {
+        0% {
+            transform: translateY(250px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    
+    @-webkit-keyframes fromTop {
+        0% {
+            transform: translateY(-250px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    
+    #userProfilePic {
+        -webkit-animation: scaleAnimation 1.5s 1 ease;
+        -moz-animation: scaleAnimation 1.5s 1 ease;
+        -o-animation: scaleAnimation 1.5s 1 ease;
+    }
+    
+    @-webkit-keyframes scaleAnimation {
+        from {
+            -webkit-transform: scale(0.1)
+        }
+        to {
+            -webkit-transform: scale(1)
+        }
+    }
+    
+    @-moz-keyframes scaleAnimation {
+        from {
+            -moz-transform: scale(0.1)
+        }
+        to {
+            -moz-transform: scale(1)
+        }
+    }
+    
+    @-o-keyframes scaleAnimation {
+        from {
+            -o-transform: scale(0.1) translate(0px);
+        }
+        to {
+            -o-transform: scale(1)
+        }
+    }
+    
+    @media only screen and (max-device-width: 480px) {
+        md-toolbar {
+            margin-right: 10% !important;
+            margin-left: 10% !important;
+        }
+    }
+    /*PAGE STRUCTURE FORMAT*/
+    
+    @font-face {
+        font-family: materialFont;
+        src: url(../fonts/Roboto-Light.ttf);
+    }
+    
+    @-moz-document url-prefix() {
+        md-select {
+            margin-top: 14px !important;
+        }
+    }
+    
+    .md-childApp-containerSection {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background: #ececec;
+    }
+    
+    .md-childApp-headerSection {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 48px;
+        padding: 0px 8px 0px 8px;
+        margin: 0;
+        max-width: 960px;
+        margin: 0 auto;
+    }
+    
+    .md-childApp-contentContainerSection {
+        position: relative;
+        top: 0px;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 48px);
+        margin: 0;
+        box-sizing: border-box;
+        overflow: auto;
+    }
+    
+    .dw-profileapp-banner {
+        width: 960px;
+        margin-top: 25px;
+        height: 200px;
+        background-image: url("images/userassets/contactcoverimg/wt4NRqA.jpg");
+        background-size: 100% 100%;
+        background-size: cover;
+    }
+    
+    .dw-profileapp-banner img {
+        border-radius: 50%;
+        box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);
+    }
+    
+    .dw-profileapp-banner span {
+        margin-top: 15px;
+        font-size: 25px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 1);
+        text-shadow: 1px 1px 2px rgba(30, 30, 30, 0.8);
+    }
+    
+    .dw-profileapp-info {
+        width: 960px;
+        margin-top: 15px;
+        height: auto;
+        background: white;
+    }
+    
+    .dw-profileapp-info md-content {
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    
+    .dw-profileapp-info .md-input[disabled] {
+        color: rgba(0, 0, 0, 0.9);
+        background-image: none !important;
+    }
+
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.5.0/angular-material-icons.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/SVG-Morpheus/0.1.8/svg-morpheus.js"></script>
+<!-- custom app template -->
+<div id="dw-child-test-app-1" class="md-child-application-container" layout="column" layout-align="start center">
+    <div id="dw-child-application-header-control-bar" layout="row" layout-align="space-between center">
+        <div class="dw-child-application-header-control-bar-left-section" layout="row" layout-align="center center">
+            <img class="dw-child-application-header-icon" ng-src="data:image/png;base64,{{profilePicture}}" err-src="images/appIcons/contacts.png" width="24" height="24" style="border-radius:50%;">
+            <span class="dw-child-application-header-title">User Profile</span>
+        </div>
+        <div class="dw-child-application-header-control-bar-right-section">
+            <md-button class="md-icon-button animatedHeaderControl" aria-label="More Application Controls">
+                <md-icon md-svg-icon="icons/ic_more_vert_24px.svg" alt="more controls" class="cad24"></md-icon>
+                <md-tooltip>More</md-tooltip>
+            </md-button>
+            <md-button class="md-icon-button animatedHeaderControl" aria-label="Minimise Application" ng-click="childApplicationMinimise()">
+                <md-icon md-svg-icon="icons/ic_fullscreen_exit_24px.svg" alt="minimise" class="cad24"></md-icon>
+                <md-tooltip>Minimise</md-tooltip>
+            </md-button>
+            <md-button class="md-icon-button animatedHeaderControl" aria-label="Close Application" ng-click="childApplicationClose()">
+                <md-icon md-svg-icon="icons/ic_close_24px.svg" alt="close" class="cad24"></md-icon>
+                <md-tooltip>Close</md-tooltip>
+            </md-button>
+        </div>
+    </div>
+    <div class="dw-childapp-backgroundcover defaultView" layout="column" layout-align="center center" style="z-index:1;">
+        <div class="dw-childapp-splash-container" layout="column" layout-align="end center">
+            <div class="dw-childapp-splash-logo-container" layout="column" layout-align="center center">
+                <img ng-src="data:image/png;base64,{{profilePicture}}" err-src="images/appIcons/contacts.png" class="dw-childapp-splash-logo top-splash-elements-entry" width="100" height="100" style="border-radius:50%;" />
+            </div>
+            <div class="dw-childapp-splash-text-container" layout="column" layout-align="space-around center">
+                <span class="dw-childapp-splash-title bottom-splash-elements-entry">{{shellUserProfileSection.name}}</span>
+                <md-progress-circular class="dw-childapp-splash-loadingspinner bottom-splash-elements-entry" md-mode="indeterminate"></md-progress-circular>
+                <span class="dw-childapp-splash-loadingtextindicator bottom-splash-elements-entry">loading</span>
+            </div>
+        </div>
+    </div>
+    <div class="customeAppContainer" layout="column" layout-align="start center" ng-scrollbars ng-scrollbars-config="frameworkScrollconfig.scrollDefault">
+        <div style="background-image:url({{banner}})" class="dw-profileapp-banner md-whiteframe-z3" layout="column" layout-align="center center" ng-mouseenter="changeProfilePicture = false" ng-mouseleave="changeProfilePicture = false">
+            <img ng-src="data:image/png;base64,{{banner}}" style="    border-radius: 0%;
+    position: absolute;
+    z-index: 0;
+    height: 200px;
+    margin-top: -27px;
+    width: 960px;" ng-hide="hideObjectstoreBanner">
+            <img ng-src="data:image/png;base64,{{profilePicture}}" err-src="images/appIcons/contacts.png" width="100" height="100" ng-mouseenter="changeProfilePicture = true" style="z-index:1;">
+            <center style="z-index:2;">
+                <div style="position: relative;
+						height: 100px;
+						width: 100px;
+						background-color: rgba(48, 49, 50, 0.44);
+						margin-top: -100px;
+						border-radius: 100%;" ng-show="changeProfilePicture" ng-mouseleave="changeProfilePicture = false">
+                    <input id="selectPicture" type="file" file-model="myFile" style="visibility:hidden;" onchange="angular.element(this).scope().file_changed(this)">
+                    <md-icon ng-click="EditProfpic();" md-svg-icon="icons/ic_edit_24px.svg" class="cad24" alt="edit Profile Pic"></md-icon>
+                </div>
+                <div style="position: relative;
+						height: 100px;
+						width: 100px;
+						margin-top: -100px;
+                            z-index:2;
+						border-radius: 100%;" ng-if="progressCircle" layout="row" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular style="padding-top: 20px !important; z-index:2;" md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </center>
+            <span style="z-index:1;">{{shellUserProfileSection.name}}</span>
+            <md-icon style="position: absolute; right: 5px; fill:lightgrey;" md-svg-icon="icons/ic_edit_24px.svg" class="cad24" alt="edit Banner Pic" ng-click="changeBanner($event);"></md-icon>
+        </div>
+        <md-progress-linear md-mode="indeterminate" class="md-primary" ng-if="bannerProgress"></md-progress-linear>
+        <div class="dw-profileapp-info md-whiteframe-z3" layout="column" layout-align="start start">
+            <md-content layout-padding="">
+                <div layout="row" layout-align="end center">
+                    <md-button style="font-size: smaller;
+    color: #5F7C8A;" ng-click="userProfileChangePassword($event);">Change Password</md-button>
+                </div>
+                <form name="userForm">
+                    <div layout="" layout-sm="column">
+                        <md-input-container style="width:100%">
+                            <label>Name</label>
+                            <input ng-model="shellUserProfileSection.name" ng-disabled="shellUserProfileSection.disabled">
+                        </md-input-container>
+                    </div>
+                    <div layout="" layout-sm="column">
+                        <md-input-container flex="">
+                            <label>Phone Number</label>
+                            <input ng-model="shellUserProfileSection.phone" ng-disabled="shellUserProfileSection.disabled">
+                        </md-input-container>
+                        <md-input-container flex="">
+                            <label>Email</label>
+                            <input ng-model="shellUserProfileSection.email" ng-disabled="shellUserProfileSection.disabled">
+                        </md-input-container>
+                    </div>
+                    <md-input-container flex="">
+                        <label>Company</label>
+                        <input ng-model="shellUserProfileSection.company" ng-disabled="shellUserProfileSection.disabled">
+                    </md-input-container>
+                    <div layout="" layout-sm="column">
+                        <md-input-container flex="">
+                            <label>Country</label>
+                            <input ng-model="shellUserProfileSection.country" ng-disabled="shellUserProfileSection.disabled">
+                        </md-input-container>
+                        <md-input-container flex="">
+                            <label>Zip Code</label>
+                            <input ng-model="shellUserProfileSection.zipcode" ng-disabled="shellUserProfileSection.disabled">
+                        </md-input-container>
+                    </div>
+                </form>
+            </md-content>
+        </div>
+    </div>
+    <md-button class="md-fab dw-child-app-saveButton" aria-label="Eat cake" style="position: absolute;
+    line-height: 6px;
+    right: 5vw;
+    bottom: 5vh;
+    z-index:0;" ng-click="shellUserProfileSectionEdit();">
+        <md-icon md-svg-icon="icons/ic_edit_24px.svg" class="cad24" alt="edit" ng-if="selectedIcon == 'mode_edit'"></md-icon>
+        <md-icon md-svg-icon="icons/ic_save_24px.svg" class="cad24" alt="save" ng-if="selectedIcon == 'save'"></md-icon>
+    </md-button>
+</div>

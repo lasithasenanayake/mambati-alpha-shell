@@ -1,0 +1,49 @@
+{
+	"docklayoutconfiguration":{
+		"pannelcollection":[
+			{
+				"shellRelationship": "DuoWorld Alpha Shell v 1.0", 
+				"panelDescription": "Framework shell applications panel", 
+				"panelTitle": "applications", 
+				"pannnelDirectiveContentTemplate": "partials/panel-templates/applications-pannel.html", 
+				"panelArrangement": 0,
+				"pannelContentCollectionType":"application-component"
+			},
+			{
+				"shellRelationship": "DuoWorld Alpha Shell v 1.0", 
+				"panelDescription": "Framework shell widgets panel", 
+				"panelTitle": "widgets", 
+				"pannnelDirectiveContentTemplate": "partials/panel-templates/widgets-pannel.html", 
+				"panelArrangement": 1,
+				"pannelContentCollectionType":"widget-component"
+			},
+			{
+				"shellRelationship": "DuoWorld Alpha Shell v 1.0", 
+				"panelDescription": "Framework shell custom panel", 
+				"panelTitle": "collection", 
+				"pannnelDirectiveContentTemplate": "partials/panel-templates/collections-pannel.html", 
+				"panelArrangement": 2,
+				"pannelContentCollectionType":"various-component"
+			}
+		],
+		"dockoptions":{
+			"transitioneffect":"coverflow",
+			"layoutdirection":"horizontal",
+			"pagination":true,
+			"looppannels":false
+		}
+	},
+	"themeconfiguration":{
+		"palettename":"indigo",
+		"primarypalette":"#3F51B5",
+		"accentpalette":"#FF4081"
+	},
+	"backgroundconfiguration":{
+		"backgroundimageurl":"./images/shellassets/background/water_by_kuldarleement-d6g5poo.jpg",
+		"backgroundoptions":{
+			"overlayblur":true,
+			"overlaytexture":false,
+			"overlaygradient":false
+		}
+	}
+}

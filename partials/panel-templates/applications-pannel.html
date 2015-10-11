@@ -1,0 +1,11 @@
+<div class="md-framework-parent-panel-layout" layout="column" layout-align="start center">
+	<div class="md-framework-panel-content-container" style="overflow-y:auto;" layout="column" layout-align="start center">
+		<div gridster="appGridsterOpts" class="md-framework-pannel-apptray">
+			<ul>
+				<li gridster-item ng-repeat="componentdata in allApps">
+					<div appshortcut-component componentdata="componentdata"></div>	
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

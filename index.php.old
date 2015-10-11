@@ -1,0 +1,62 @@
+<?php 
+  require ($_SERVER['DOCUMENT_ROOT'] . "/dwcommon.php");
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" type="text/css" href="bower_components/animate.css/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" type="text/css" href="animations.css"/>
+    <link rel="stylesheet" type="text/css" href="appshellcommon.css"/>
+    <link rel="stylesheet" type="text/css" href="directive-styling.css"/>
+    <link rel="stylesheet" type="text/css" href="shell_specific_components/styles/custommaterialstyling.css"/>
+    <link rel="stylesheet" type="text/css" href="shell_specific_components/styles/themestyles.css"/>
+</head>
+<body ng-app="mambatiFrameworkShell" layout="horizontal" ng-cloak ng-init="shellLoadouts = {shellLogo:'images/tennantAssets/customizedLogo.png'}">  
+    <div id="duoWorld-framework-main-container" ui-view></div>
+    <!-- Framework Libraries -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <!-- Framework Helper Modules -->
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <!-- UI Framework and Helper Modules -->
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/utils/Draggable.min.js"></script>
+    <!-- UI Micro Kernal Modules -->
+    <script src="uimicrokernel/socket.io-1.2.0.js"></script>
+    <script src="uimicrokernel/uimicrokernel.js"></script>
+    <script src="uimicrokernel/directivelibrary.js"></script>
+    <!-- Shell Specific Global Modules -->
+    <script src="shell_specific_components/libs/mambatidirectives.js"></script>
+    <script src="shell_specific_components/libs/mambatirenderingengine.js"></script>
+    <script src="shell_specific_components/filters/dw-shell-common-filters.js"></script>
+    <!-- Shell Specific Local Modules -->
+    <script src="shell_specific_components/configuration/duoworld-frameworkshell.js"></script>
+    <script src="shell_specific_components/configuration/duoworld-themeconfiguration.js"></script>
+    <script src="shell_specific_components/factories/duoworld-tennantinfo-factory.js"></script>
+    <!-- Shell Specific Controllers -->
+    <script src="shell_specific_components/controllers/duoworld-frameworkentrycontroller.js"></script>
+    <script src="shell_specific_components/controllers/duoworld-framework-shell-controller.js"></script>
+    <script src="shell_specific_components/controllers/duoworld-framework-shell-dock-controller.js"></script>
+    <!-- panel controller scripts -->
+    <script src="shell_specific_components/controllers/duoworld-panel-applicationspanelcontroller.js"></script>
+    <script src="shell_specific_components/controllers/duoworld-panel-widgetspanelcontroller.js"></script>
+    <script src="shell_specific_components/controllers/duoworld-panel-collectionspanelcontroller.js"></script>
+    <!-- child view controllers -->
+    <script src="shell_specific_components/controllers/duoworld-framework-shell-launcher-controller.js"></script>
+    <script src="shell_specific_components/controllers/duoworld-framework-shell-launcher-customapps-controller.js"></script>
+    <script src="shell_specific_components/controllers/duoworld-framework-shell-launcher-defaultapps-controller.js"></script>
+    <script src="shell_specific_components/controllers/duoworld-framework-shell-launcher-childtestapp-controller.js"></script>
+</body>
+</html>
