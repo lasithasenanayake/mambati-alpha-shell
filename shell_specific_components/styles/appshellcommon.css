@@ -4,10 +4,8 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,500,300italic,500italic,700italic,900,300);
 
 body{
-	/*background:url(images/shellAssets/background/blur-background12.jpg) no-repeat;
-	background-size: 100% 100%;*/
 	background:rgba(30,30,30,1);
-	/*overflow:hidden !important; */
+	overflow:hidden !important; 
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -40,7 +38,7 @@ body{
 /*Duo world framework view container styles*/
 
 /*.dw-loadingFrame (framework loader styles)*/
- .dw-loadingFrame{
+ #dw-loadingFrame{
 	position:absolute;
 	z-index:10;
 	display:block;    
@@ -114,7 +112,14 @@ body{
 	height:100%;
 	width:100%;
 	overflow:hidden;
+	background:rgba(10,10,10,1); 
 	box-sizing:border-box;       
+}
+
+.backgroundImage{
+	display:block; 
+	width:100%;
+	height:100%;
 }
 
 /*------------------------------------- framework entry styles begin ----------------------------*/
@@ -245,6 +250,7 @@ body{
 	width:100%;
 	height:100%;
 	overflow:hidden;
+	z-index:1; 
 }
 
 #duoworld-framework-view-container{
@@ -782,15 +788,13 @@ md-whiteframe{
 	height:auto;
 	margin-left:-480px;
 	padding:32px;
-
 }
 
 .applicationIconGridContainer md-button{
 	margin:36px;
 	height:140px;
 	width:100px; 
-	padding:0;
-	border:1px solid red;       
+	padding:0;     
 }
 
 .applicationIconGridContainer button img{
@@ -1233,8 +1237,7 @@ md-whiteframe{
 		height:auto; 
 		width:960px;
 		z-index:1;
-		margin-top:20px;
-		margin-bottom:20px;   
+		border:1px solid red;   
 	}
 
 	/*[.md-framework-pannel-apptray] button */
@@ -1249,6 +1252,15 @@ md-whiteframe{
 		-o-transition:all 0.2s cubic-bezier(.55,0,.1,1);
 		-moz-transition:all 0.2s cubic-bezier(.55,0,.1,1);
 		-webkit-transition:all 0.2s cubic-bezier(.55,0,.1,1);  
+	}
+
+	/*[.dw-quickaccess-appdrawer]*/
+	.dw-quickaccess-appdrawer{
+	  width: 304px;
+	  height:100%;
+	  margin: 0px;
+	  overflow:hidden; 
+	  position: relative; 
 	}
 
 	.shortcutExpanded{
@@ -1614,6 +1626,17 @@ md-whiteframe{
 		width:100%;
 		overflow:hidden; 
 		box-styling:border-box;
+	}
+
+	.panelControllerHolder{
+		position:absolute;
+		top:10px;
+		right:10px;
+		width:144px;
+		height:48px;
+		z-index:10;
+		background:rgba(10,10,10,0.5); 
+		box-styling:border-box;       
 	}
 
 

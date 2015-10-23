@@ -141,15 +141,6 @@ md-sidenav{
   border-right:none;
 }
 
-/*[.dw-quickaccess-appdrawer]*/
-.dw-quickaccess-appdrawer{
-  width: 304px;
-  height:100%;
-  margin: 0px;
-  overflow:auto; 
-  position: relative; 
-}
-
 
 /*[.dw-quickaccess-appdrawer] .md-appcategory-section .md-appcategory-title*/
 

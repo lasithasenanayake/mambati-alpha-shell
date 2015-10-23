@@ -18,7 +18,7 @@
         $timeout(function () {
             dwChildAppHeaderController.css({
                 'top': '0px',
-                'background': 'rgba(0,0,0,0.1)'
+                'background': $rootScope.shellConfig.themeconfiguration.accentpalette
             })
         }, 1000);
 
@@ -96,9 +96,10 @@
             }
         };
 
+        $auth.checkSession();
         $scope.selectedIcon = "mode_edit";
         //default banner
-        $scope.banner = "images/userassets/contactcoverimg/cover1.jpg";
+        //$scope.banner = "images/userassets/contactcoverimg/cover1.jpg";
         //cover picture uploading progress
         $scope.progressCircle = false;
         //banner picture uploading progress
@@ -110,19 +111,19 @@
 
         $scope.changeBanner = function (ev) {
             $mdDialog.show({
-                controller: 'tableCtrl',
+                controller: userProfileBannerController,
                 templateUrl: 'partials/frameworktemplates/changeBanner.html',
                 targetEvent: ev,
                 clickOutsideToClose: true
             }).then(function (answer) {
                 if (answer.type == "selected") {
-                    $scope.banner = answer.data;
-                    $scope.bannerFrom = $scope.banner;
-                    $scope.hideObjectstoreBanner = true;
+                    $rootScope.banner = answer.data;
+                    $scope.bannerFrom = $rootScope.banner;
+                    $rootScope.hideObjectstoreBanner = true;
                     saveProfile();
                 } else if (answer.type == "upload") {
                     $scope.bannerProgress = true;
-                    $scope.hideObjectstoreBanner = false;
+                    $rootScope.hideObjectstoreBanner = false;
                     var photofile = answer.data;
                     var reader = new FileReader();
                     reader.onload = function (e) {
@@ -130,13 +131,13 @@
                             var str = e.target.result;
                             str = str.replace("data:image/png;base64,", "");
                             str = str.replace("data:image/jpeg;base64,", "");
-                            console.log(str);
-                            $scope.banner = str;
+                            //console.log(str);
+                            $rootScope.banner = str;
                         });
                     };
 
                     reader.readAsDataURL(photofile);
-                    $uploader.upload("duosoftware.com", "coverPictures", photofile, $rootScope.shellUserProfileSection.email);
+                    $uploader.upload("duoworld.duoweb.info", "coverPictures", photofile, $auth.getUserName(), true);
                     $uploader.onSuccess(function (e, data) {
                         $scope.bannerFrom = "fromObjectStore";
                         saveProfile();
@@ -157,7 +158,7 @@
             if ($scope.bannerFrom == "fromObjectStore") {
                 var banner = "fromObjectStore";
             } else {
-                var banner = $scope.banner;
+                var banner = $rootScope.banner;
             };
 
             $scope.user = {
@@ -168,7 +169,8 @@
                 country: $rootScope.shellUserProfileSection.country,
                 zipcode: $rootScope.shellUserProfileSection.zipcode,
                 bannerPicture: banner,
-                id: "admin@duosoftware.com"
+                id: "admin@duosoftware.com",
+                username: $auth.getUserName()
             };
             console.log($scope.user);
             var client = $objectstore.getClient("duosoftware.com", "profile", true);
@@ -182,56 +184,62 @@
             });
 
             client.update($scope.user, {
-                KeyProperty: "email"
+                KeyProperty: "username"
             });
         };
 
 
-        $scope.getProfilePicture = function () {
+        //        $scope.getProfilePicture = function () {
+        //
+        //            var client = $objectstore.getClient(window.location.hostname, "profilepictures", true);
+        //            client.onGetOne(function (data) {
+        //                if (data)
+        //                    console.log(data, window.location.hostname);
+        //                $scope.profilePicture = data.Body;
+        //            });
+        //            client.onError(function (data) {
+        //                Toast("Error occured while fetching profile picture");
+        //            });
+        //            client.getByKey($rootScope.shellUserProfileSection.email);
+        //        };
+        //
+        //        $scope.getBannerPicture = function () {
+        //            var client = $objectstore.getClient(window.location.hostname, "coverPictures", true);
+        //            client.onGetOne(function (data) {
+        //                if (data)
+        //                    console.log(data);
+        //                $scope.banner = data.Body;
+        //                if (data.Body == undefined) {
+        //                    $scope.banner = "images/userassets/contactcoverimg/cover1.jpg";
+        //                    $scope.hideObjectstoreBanner = true;
+        //                };
+        //            });
+        //            client.onError(function (data) {
+        //                Toast("Error occured while fetching Banner");
+        //            });
+        //            client.getByKey($rootScope.shellUserProfileSection.email);
+        //        };
 
-            var client = $objectstore.getClient(window.location.hostname, "profilepictures", true);
-            client.onGetOne(function (data) {
-                if (data)
-                    console.log(data);
-                $scope.profilePicture = data.Body;
-            });
-            client.onError(function (data) {
-                Toast("Error occured while fetching profile picture");
-            });
-            client.getByKey($rootScope.shellUserProfileSection.email);
-        };
+        //$scope.getProfilePicture();
 
-        $scope.getBannerPicture = function () {
-            var client = $objectstore.getClient(window.location.hostname, "coverPictures", true);
-            client.onGetOne(function (data) {
-                if (data)
-                    console.log(data);
-                $scope.banner = data.Body;
-                if (data.body == undefined) {
-                    $scope.banner = "images/userassets/contactcoverimg/cover1.jpg";
-                    $scope.hideObjectstoreBanner = true;
-                };
-            });
-            client.onError(function (data) {
-                Toast("Error occured while fetching Banner");
-            });
-            client.getByKey($rootScope.shellUserProfileSection.email);
-        };
 
-        $scope.getProfilePicture();
+        //        console.log($rootScope.shellUserProfileSection);
+        //        if ($rootScope.shellUserProfileSection.bannerPicture == undefined) {
+        //            $rootScope.shellUserProfileSection.bannerPicture = "fromObjectStore";
+        //        };
+        //
+        //        if ($rootScope.shellUserProfileSection.bannerPicture == "fromObjectStore") {
+        //            console.log($rootScope.shellUserProfileSection.bannerPicture);
+        //            $scope.getBannerPicture();
+        //            $scope.hideObjectstoreBanner = false;
+        //        } else {
+        //            $scope.hideObjectstoreBanner = true;
+        //            $scope.banner = $rootScope.shellUserProfileSection.bannerPicture;
+        //            console.log($scope.banner);
+        //        };
 
-        if ($rootScope.shellUserProfileSection.bannerPicture == undefined) {
-            $rootScope.shellUserProfileSection.bannerPicture = "fromObjectStore";
-        };
 
-        if ($rootScope.shellUserProfileSection.bannerPicture == "fromObjectStore") {
-            $scope.getBannerPicture();
-            $scope.hideObjectstoreBanner = false;
-        } else {
-            $scope.hideObjectstoreBanner = true;
-            $scope.banner = $rootScope.shellUserProfileSection.bannerPicture;
-        };
-
+        //test();
         $scope.EditProfpic = function () {
             document.getElementById("selectPicture").click();
         }
@@ -247,22 +255,25 @@
                     var str = e.target.result;
                     str = str.replace("data:image/png;base64,", "");
                     str = str.replace("data:image/jpeg;base64,", "");
-                    console.log(str);
-                    $scope.profilePicture = str;
+                    // console.log(str);
+                    $rootScope.profilePicture = str;
                 });
             };
 
             reader.readAsDataURL(photofile);
-            console.log($scope.myFile, photofile);
-            $uploader.upload("duosoftware.com", "profilepictures", photofile, $rootScope.shellUserProfileSection.email);
+            //console.log($scope.myFile, photofile);
+            console.log("username is : ");
+            console.log($auth.getUserName());
+            $uploader.upload("duoworld.duoweb.info", "profilepictures", photofile, $auth.getUserName(), true);
             $uploader.onSuccess(function (e, data) {
                 $scope.progressCircle = false;
-                console.log("successfull");
+                //console.log("successfull");
                 Toast('successfully updated');
                 //$scope.getProfilePicture();
             });
 
             $uploader.onError(function (e, data) {
+                $scope.progressCircle = false;
                 Toast("Error occured");
                 console.log(data);
             });
@@ -273,7 +284,7 @@
             $mdToast.show(
                 $mdToast.simple()
                 .content(msg)
-                .position('bottom right')
+                .position('bottom left')
                 .hideDelay(500)
             );
         };
@@ -285,38 +296,86 @@
                                         </md-input-container>\
      <md-input-container>\
           <label>New Password</label>\
-          <input ng-model='changePasswordForm.newPass' type='password' required>\
+          <input ng-model='changePasswordForm.newPass' name='pass' type='password' minlength='8' required>\
+<div ng-messages='changePasswordForm.pass.$error' ng-show='changePasswordForm.pass.$dirty'>\
+          <div ng-message='minlength'>requires minimum of 8 characters</div>\
+<div ng-message='required'>Password is a must</div>\
+        </div>\
         </md-input-container>\
            <md-input-container>\
           <label>Re-enter New Password</label>\
           <input ng-model='changePasswordForm.reNewPass' type='password' required>\
-<div ng-messages='changePasswordForm.reNewPass.$error' ng-if='changePasswordForm.reNewPass !== changePasswordForm.newPass'>\
-          <div ng-message='reNewPass !== newPass'>Re-Check your password</div>\
-          </div>\
+          <div ng-if='changePasswordForm.reNewPass !== changePasswordForm.newPass' style='font-size: 11px;position:absolute;bottom: 0px;color: #F45144;'>Re-Check your password</div>\
         </md-input-container>\
 <div class='md-actions' layout='row'>\
-<md-button class='md-primary' ng-disabled='changePasswordForm.$invalid'>Save</md-button></div></form>\
+<md-button class='md-primary' ng-disabled='changePasswordForm.reNewPass !== changePasswordForm.newPass' ng-click='changePassword();'>Save</md-button></div></form>\
 </md-content></md-dialog>";
             $mdDialog.show({
                 controller: userProfileChangePasswordController,
                 template: changePasswordTemplate,
                 targetEvent: ev,
                 clickOutsideToClose: true
-            }).then(function () {
+            }).then(function (data) {
+                console.log(data);
 
+                $http({
+                    method: 'GET',
+                    url: 'http://' + $rootScope.currenttenantsessioninfo.Domain + '/auth/ChangePassword/' + data.oldPass + '/' + data.newPass,
+
+                }).
+                success(function (data, status, headers, config) {
+                    console.log(data);
+                    Toast('Password Changed Successfully');
+                }).
+                error(function (data, status, headers, config) {
+                    console.log(data, $auth.getSecurityToken());
+                    Toast('Invalid Credentials!');
+                });
             });
         };
 
-        function userProfileChangePasswordController() {
+        function getPaymentDetails() {
+            $scope.paymentDetailsLocked = false;
+            $http({
+                method: 'GET',
+                url: 'http://' + $rootScope.currenttenantsessioninfo.Domain + '/payapi/account/get',
 
+            }).
+            success(function (data, status, headers, config) {
+                console.log(data);
+                $scope.paymentAccountDetails = data[0];
+                if ($scope.paymentAccountDetails == null) {
+                    $scope.paymentDetailsLocked = true;
+                };
+            }).
+            error(function (data, status, headers, config) {
+                $scope.paymentDetailsLocked = true;
+                console.log(data, $auth.getSecurityToken());
+            });
         };
+
+        getPaymentDetails();
+
+        function userProfileChangePasswordController($scope, $mdDialog) {
+            $scope.changePassword = function () {
+                $mdDialog.hide($scope.changePasswordForm);
+                //console.log($scope.changePasswordForm);
+            };
+
+            $scope.matchPassword = function () {
+                if (changePasswordForm.newPass == changePasswordForm.reNewPass) {
+                    $scope.passwordMatchError = false;
+                } else {
+                    $scope.passwordMatchError = true;
+                };
+                return
+            };
+        };
+
 
     };
 
-
-
-    duoworldFrameworksShellLauncherUserProfileControl.$inject = ['$rootScope', '$scope', '$state', '$http', '$timeout', '$presence', '$objectstore', '$uploader', '$mdToast', '$window', '$auth', '$mdDialog'];
-    mambatiFrameworkShell.controller('tableCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+    function userProfileBannerController($scope, $mdDialog) {
         $scope.closeDialog = function () {
             // Easily hides most recent dialog shown...
             // no specific instance reference is needed.
@@ -345,8 +404,14 @@
             $mdDialog.hide(obj);
 
         };
+    };
 
-}]);
+
+    duoworldFrameworksShellLauncherUserProfileControl.$inject = ['$rootScope', '$scope', '$state', '$http', '$timeout', '$presence', '$objectstore', '$uploader', '$mdToast', '$window', '$auth', '$mdDialog'];
+    //    mambatiFrameworkShell.controller('tableCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+    //
+    //
+    //}]);
 
     mambatiFrameworkShell.controller('duoworld-framework-shell-launcher-userprofile-ctrl', duoworldFrameworksShellLauncherUserProfileControl);
 }());

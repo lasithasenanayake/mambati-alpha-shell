@@ -1,9 +1,3 @@
-/**
- * Bunch of useful filters for angularJS(with no external dependencies!)
- * @version v0.5.2 - 2015-01-17 * @link https://github.com/a8m/angular-filter
- * @author Ariel Mashraki <ariel@mashraki.co.il>
- * @license MIT License, http://www.opensource.org/licenses/MIT
- */
 (function ( window, angular, undefined ) {
 /*jshint globalstrict:true*/
 'use strict';

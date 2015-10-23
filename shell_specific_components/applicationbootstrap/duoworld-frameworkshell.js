@@ -1,6 +1,6 @@
 /*Mambati custom app script file*/
 
-var mambatiFrameworkShell = angular.module('mambatiFrameworkShell', ['ct.ui.router.extras','uiMicrokernel','ngMaterial','ngAnimate','ngTouch','gridster','angularScreenfull','ksSwiper','mambatiDirectives','mambatiRenderingEngine','dwShellCommonFilters','ngDialog','angular.filter','stBlurredDialog','vAccordion','widget']);
+var mambatiFrameworkShell = angular.module('mambatiFrameworkShell', ['ct.ui.router.extras','uiMicrokernel','ngMaterial','ngAnimate','ngTouch','ngScrollbars','gridster','angularScreenfull','ksSwiper','mambatiDirectives','mambatiRenderingEngine','dwShellCommonFilters','ngDialog','angular.filter','stBlurredDialog','vAccordion','widget']);
 
 mambatiFrameworkShell.run(function($state, $rootScope){
 	$rootScope.$state = $state;
@@ -126,3 +126,4 @@ mambatiFrameworkShell.config(['$stateProvider', '$futureStateProvider', '$sticky
 	//$fsp.addResolve(futureStateResolve);
 
 }]);
+

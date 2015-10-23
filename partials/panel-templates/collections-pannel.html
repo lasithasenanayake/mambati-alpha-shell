@@ -19,26 +19,7 @@
 
 </style>
 <div class="md-framework-parent-panel-layout">
-	<div class="md-framework-pannel-featureHolder">
-		<div class="md-framework-pannel-featureHolder-menu-view" layout="row" layout-align="end center">
-			<md-button class="md-icon-button" aria-label="Search Pannel" ng-click="changePanelFeatureMenuView()">
-		        <md-icon md-svg-icon="icons/ic_search_24px.svg" class="s24" alt="search"></md-icon>
-		    </md-button>
-		    <md-button class="md-icon-button" aria-label="View Module" ng-click="arrangeApplications()">
-		        <md-icon ng-show="showArrangementStatus" md-svg-icon="icons/ic_view_module_24px.svg" class="s24" alt="search"></md-icon>
-		        <md-icon ng-hide="showArrangementStatus" md-svg-icon="icons/ic_view_list_24px.svg" class="s24" alt="search"></md-icon>
-		    </md-button>
-		</div>
-		<!-- <div ng-hide="showFeatureHolderStatus" class="md-framework-pannel-featureHolder-search-view" layout="row" layout-align="end center">
-			<md-input-container md-no-float>
-		      <input ng-model="appSearchQuery" type="text" placeholder="Search Applications">
-		    </md-input-container>
-		    <md-button class="md-icon-button" aria-label="Remove Application Search" ng-click="changePanelFeatureMenuView()">
-		        <md-icon md-svg-icon="icons/ic_highlight_remove_24px.svg" class="s24" alt="remove search"></md-icon>
-		    </md-button>
-		</div> -->
-	</div>
-	<div class="md-framework-panel-content-container" layout="column" layout-align="center center">
-		
+	<div class="md-framework-panel-content-container" layout="column" layout-align="start start">
+		<panelcontrol-component></panelcontrol-component>
 	</div>
 </div>
